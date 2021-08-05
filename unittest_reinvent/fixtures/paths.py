@@ -7,11 +7,8 @@ with open(os.path.join(project_root, '../../configs/config.json'), 'r') as f:
 
 MAIN_TEST_PATH = config["MAIN_TEST_PATH"]
 
-RANDOM_PRIOR_PATH = os.path.join(project_root,  "../../data/augmented.prior")
-SAS_MODEL_PATH = os.path.join(project_root,  "../../data/SA_score_prediction.pkl.gz")
-
-
-ACTIVITY_REGRESSION = os.path.join(project_root, "../../data/B-RAF_model.pkl")
-OFFTARGET_ACTIVITY_REGRESSION = os.path.join(project_root, "../../data/Aurora_model.pkl")
-ACTIVITY_CLASSIFICATION = os.path.join(project_root,  "../../data/drd2.pkl")
-SMILES_SET_PATH = os.path.join(project_root,  "../../data/smiles.smi")
+ACTIVITY_REGRESSION = config["ACTIVITY_REGRESSION"]
+ACTIVITY_CLASSIFICATION = config["ACTIVITY_CLASSIFICATION"]
+SMILES_SET_PATH = config["SMILES_SET_PATH"]
+PRIOR_PATH = config["PRIOR_PATH"]
+LIBINVENT_PRIOR_PATH = config["LIBINVENT_PRIOR_PATH"]
