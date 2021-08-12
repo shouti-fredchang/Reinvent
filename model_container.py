@@ -143,11 +143,15 @@ class ModelContainer():
             fingerprints.append(fp_np)
         return fingerprints
 
+    def _passthru(self, molecules: List, parameters: {}) -> []:
+        return molecules
+
     def _descriptor_registry(self) -> dict:
         descriptor_list = dict(ecfp=self._smiles_to_fingerprints,
                                ecfp_counts=self._smiles_to_count_fingerprints,
                                maccs_keys=self._maccs_keys,
-                               avalon=self._avalon)
+                               avalon=self._avalon,
+                               passthru=self._passthru)
         return descriptor_list
 
     def _load_descriptor(self, parameters: {}):
