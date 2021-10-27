@@ -74,7 +74,7 @@ class TransformationFactory:
         _k = parameters[self._csp_enum.K]
 
         def _exp(pred_val, low, high, k) -> float:
-            return math.pow(10, (10 * k * (pred_val - (low + high) * 0.5) / (low - high)))
+            return np.power(10, (10 * k * (pred_val - (low + high) * 0.5) / (low - high)))
 
         transformed = [1 / (1 + _exp(pred_val, _low, _high, _k)) for pred_val in predictions]
         return np.array(transformed, dtype=np.float32)
