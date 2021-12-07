@@ -125,18 +125,19 @@ class TransformationFactory:
             destination = [point['destination'] for point in interpolation_map]
             assert len(origin) == len(destination)
 
-            if truncate_left:
-                origin = [origin[0] - 1] + origin
-                destination = [destination[0]] + destination
-            if truncate_right:
-                origin.append(origin[-1] + 1)
-                destination.append(destination[-1])
-            return interp1d(origin, destination, fill_value='extrapolate')
+            # if truncate_left:
+            #     origin = [origin[0] - 1] + origin
+            #     destination = [destination[0]] + destination
+            # if truncate_right:
+            #     origin.append(origin[-1] + 1)
+            #     destination.append(destination[-1])
+            return interp1d(origin, destination,fill_value=0,bounds_error=False)
 
         desirability = parameters.get(self._csp_enum.INTERPOLATION_MAP, [{"origin": 0.0, "destination": 0.0},
                                                                          {"origin": 1.0, "destination": 1.0}])
-        truncate_left = parameters.get(self._csp_enum.TRUNCATE_LEFT, True)
-        truncate_right = parameters.get(self._csp_enum.TRUNCATE_RIGHT, True)
+        # dropping truncation and just fill in zeros if out of bounds
+        truncate_left = [] #parameters.get(self._csp_enum.TRUNCATE_LEFT, True)
+        truncate_right = [] #parameters.get(self._csp_enum.TRUNCATE_RIGHT, True)
 
         transformation = _transformation_function(desirability, truncate_left, truncate_right)
         transformed = transformation(predictions)
