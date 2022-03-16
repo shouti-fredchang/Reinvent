@@ -37,10 +37,10 @@ class ConsoleMessage:
         return message
 
     def _score_summary_breakdown(self, score_summary: FinalSummary):
-        message = "   ".join([c.name for c in score_summary.profile])
+        message = "   ".join([f'{c.name:<12.12}' for c in score_summary.profile])
         message += "\n"
         for i in range(min(10, len(score_summary.scored_smiles))):
             for summary in score_summary.profile:
-                message += f"{summary.score[i]}   "
+                message += f"{summary.score[i]:<12.3f}   "
             message += "\n"
         return message
